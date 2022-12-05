@@ -18,6 +18,6 @@ fn main() {
         "day03_b" => day03_b::solve().unwrap(),
         "day02_b" => day02_b::solve().unwrap(),
         "day01_b" => day01_b::solve().unwrap(),
-        _ => unimplemented!("Unimplemented or not a problem"),
+        _ => unimplemented!("Unimplemented or not a problem: {}", args.problem),
     }
 }
