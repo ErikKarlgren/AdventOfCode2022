@@ -1,3 +1,5 @@
+mod day05_a;
+mod day05_b;
 mod day04_a;
 mod day04_b;
 mod day03_a;
@@ -16,6 +18,8 @@ fn main() {
     let args = Args::parse();
 
     match args.problem.as_str() {
+        "day05_a" => day05_a::solve().unwrap(),
+        "day05_b" => day05_b::solve().unwrap(),
         "day04_a" => day04_a::solve().unwrap(),
         "day04_b" => day04_b::solve().unwrap(),
         "day03_a" => day03_a::solve().unwrap(),
