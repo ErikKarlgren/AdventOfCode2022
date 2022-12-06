@@ -21,7 +21,9 @@ def main():
 
     if not args.my_test_cases:
         subprocess.run(
-            f"{executable} {subproblem} < {tests_folder}/input.txt", shell=True
+            f"time {executable} {subproblem} < {tests_folder}/input.txt",
+            shell=True,
+            env={} if args.release else {"RUST_BACKTRACE": "1"},
         )
         exit(0)
 
@@ -33,7 +35,11 @@ def main():
         in_file = testcase + ".in"
         out_file = testcase + ".out"
         tmp_file = "/tmp/output.aoc"
-        subprocess.run(f"{executable} {subproblem} < {in_file} > {tmp_file}", shell=True)
+        subprocess.run(
+            f"time {executable} {subproblem} < {in_file} > {tmp_file}",
+            shell=True,
+            env={} if args.release else {"RUST_BACKTRACE": "1"},
+        )
         print(f">>> diff for {out_file}")
         subprocess.run(["diff", tmp_file, out_file])
 
