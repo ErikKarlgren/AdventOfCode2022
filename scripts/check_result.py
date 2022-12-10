@@ -27,11 +27,13 @@ def main():
         )
         exit(0)
 
-    for testcase in {
+    testcases = [
         f"{tests_folder}/{test.replace('.in', '')}"
         for test in os.listdir(tests_folder)
         if test.endswith(".in")
-    }:
+    ]
+    testcases.sort()
+    for testcase in testcases:
         in_file = testcase + ".in"
         out_file = testcase + ".out"
         tmp_file = "/tmp/output.aoc"
@@ -41,7 +43,8 @@ def main():
             env={} if args.release else {"RUST_BACKTRACE": "1"},
         )
         print(f">>> diff for {out_file}")
-        subprocess.run(["diff", tmp_file, out_file])
+        subprocess.run(["git", "diff", "--no-index", tmp_file, out_file])
+        print(f"<<< end of diff")
 
 
 def parse_args():
