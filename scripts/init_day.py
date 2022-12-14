@@ -23,8 +23,9 @@ def main():
                 inspect.cleandoc(
                     """
             use std::io::{self, BufRead};
+            use anyhow::{bail, Result};
 
-            pub fn solve() -> io::Result<()> {
+            pub fn solve() -> Result<()> {
                 for line in io::stdin().lock().lines().map(|l| l.unwrap()){
                     // Here's your code
                 }
